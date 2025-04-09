@@ -1,6 +1,5 @@
 // src/index.tsx
 import { Hono } from 'hono';
-import { jsx } from 'hono/jsx';
 
 export interface Env {
   AI: {
@@ -17,9 +16,14 @@ export interface Env {
 
 const app = new Hono<{ Bindings: Env }>();
 
+// Test endpoint
+app.get('/test', (c) => {
+  return c.json({ message: 'Test endpoint is working!' });
+});
+
 // Home page with file upload form
 app.get('/', (c) => {
-  return c.html(
+  return c.html(`
     <html>
       <head>
         <title>Markdown Converter</title>
@@ -32,7 +36,7 @@ app.get('/', (c) => {
         </form>
       </body>
     </html>
-  );
+  `);
 });
 
 // Endpoint to handle file uploads and convert to Markdown
@@ -61,23 +65,27 @@ app.post('/convert', async (c) => {
     const results = await c.env.AI.toMarkdown(files);
 
     // Display the results
-    return c.html(
+    return c.html(`
       <html>
         <head>
           <title>Markdown Results</title>
         </head>
         <body>
           <h1>Markdown Results</h1>
-          {results.map((result) => (
-            <div key={result.name}>
-              <h2>{result.name}</h2>
-              <pre>{result.data}</pre>
+          ${results
+            .map(
+              (result) => `
+            <div>
+              <h2>${result.name}</h2>
+              <pre>${result.data}</pre>
             </div>
-          ))}
+          `
+            )
+            .join('')}
           <a href="/">Upload another file</a>
         </body>
       </html>
-    );
+    `);
   } catch (error) {
     console.error('Error processing request:', error);
     return c.text('Internal Server Error', 500);
