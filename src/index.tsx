@@ -47,12 +47,28 @@ app.get('/', (c) => {
         <title>Markdown Converter</title>
         <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
       </head>
-      <body class="bg-gray-100 text-gray-900 font-sans p-6">
-        <h1 class="text-2xl font-bold mb-4">Upload your file to convert to Markdown</h1>
-        <form action="/convert" method="post" encType="multipart/form-data" class="space-y-4">
-          <input type="file" name="file" required class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" />
-          <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">Convert</button>
+      <body class="bg-gray-100 text-gray-900 font-sans p-6 flex flex-col items-center justify-center min-h-screen">
+        <div class="text-center mb-8">
+          <h1 class="text-4xl font-extrabold mb-2">Markdown Converter</h1>
+          <p class="text-lg text-gray-600">Easily convert your files into Markdown format</p>
+        </div>
+        <form action="/convert" method="post" encType="multipart/form-data" class="w-full max-w-lg border-2 border-dashed border-gray-300 rounded-lg p-6 bg-white text-center">
+          <p class="text-gray-500 mb-4">Drag and drop your file here or click to upload</p>
+          <input type="file" name="file" required class="hidden" id="file-upload" />
+          <label for="file-upload" class="cursor-pointer inline-block bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">Choose File</label>
+          <button type="submit" class="mt-4 bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600">Convert</button>
         </form>
+        <div class="mt-12 max-w-2xl">
+          <h2 class="text-2xl font-bold mb-4">FAQs</h2>
+          <div class="mb-4">
+            <h3 class="text-lg font-semibold">What is the value proposition of this service?</h3>
+            <p class="text-gray-600">This service allows you to quickly and easily convert various file formats into Markdown, saving you time and effort in manual conversions.</p>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold">What file formats are supported?</h3>
+            <p class="text-gray-600">We support a wide range of formats including PDFs, images, HTML, XML, Microsoft Office documents, Open Document formats, CSVs, and Apple Numbers files. For a full list, refer to our <a href="/SUPPORTED_FORMATS.md" class="text-blue-500 hover:underline">Supported Formats</a>.</p>
+          </div>
+        </div>
       </body>
     </html>
   );
