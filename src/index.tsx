@@ -17,6 +17,23 @@ export interface Env {
 
 const app = new Hono<{ Bindings: Env }>();
 
+const SUPPORTED_MIME_TYPES = [
+  'application/pdf',
+  'image/jpeg',
+  'image/png',
+  'image/webp',
+  'image/svg+xml',
+  'text/html',
+  'application/xml',
+  'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+  'application/vnd.ms-excel.sheet.macroenabled.12',
+  'application/vnd.ms-excel.sheet.binary.macroenabled.12',
+  'application/vnd.ms-excel',
+  'application/vnd.oasis.opendocument.spreadsheet',
+  'text/csv',
+  'application/vnd.apple.numbers',
+];
+
 // Test endpoint
 app.get('/test', (c) => {
   return c.json({ message: 'Test endpoint is working!' });
@@ -55,12 +72,15 @@ app.post('/convert', async (c) => {
 
     for (const [key, value] of Object.entries(formData)) {
       if (value instanceof File) {
+        if (!SUPPORTED_MIME_TYPES.includes(value.type)) {
+          return c.text(`Unsupported file type: ${value.type}`, 400);
+        }
         files.push({ name: value.name, blob: value });
       }
     }
 
     if (files.length === 0) {
-      return c.text('No files uploaded', 400);
+      return c.text('No valid files uploaded', 400);
     }
 
     // Convert files to Markdown
