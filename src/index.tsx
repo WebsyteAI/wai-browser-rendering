@@ -28,24 +28,13 @@ app.get('/', (c) => {
     <html>
       <head>
         <title>Markdown Converter</title>
-        <style>
-          {`
-          body { font-family: Arial, sans-serif; margin: 20px; }
-          h1 { color: #333; }
-          form { margin-top: 20px; }
-          input[type="file"] { margin-bottom: 10px; }
-          button { background-color: #007BFF; color: white; border: none; padding: 10px 20px; cursor: pointer; }
-          button:hover { background-color: #0056b3; }
-          a { display: inline-block; margin-top: 20px; color: #007BFF; text-decoration: none; }
-          a:hover { text-decoration: underline; }
-          `}
-        </style>
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
       </head>
-      <body>
-        <h1>Upload your file to convert to Markdown</h1>
-        <form action="/convert" method="post" encType="multipart/form-data">
-          <input type="file" name="file" required />
-          <button type="submit">Convert</button>
+      <body class="bg-gray-100 text-gray-900 font-sans p-6">
+        <h1 class="text-2xl font-bold mb-4">Upload your file to convert to Markdown</h1>
+        <form action="/convert" method="post" encType="multipart/form-data" class="space-y-4">
+          <input type="file" name="file" required class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" />
+          <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">Convert</button>
         </form>
       </body>
     </html>
@@ -82,26 +71,17 @@ app.post('/convert', async (c) => {
       <html>
         <head>
           <title>Markdown Results</title>
-          <style>
-            {`
-            body { font-family: Arial, sans-serif; margin: 20px; }
-            h1 { color: #333; }
-            h2 { color: #555; }
-            pre { background: #f8f9fa; padding: 10px; border: 1px solid #ddd; overflow-x: auto; }
-            a { display: inline-block; margin-top: 20px; color: #007BFF; text-decoration: none; }
-            a:hover { text-decoration: underline; }
-            `}
-          </style>
+          <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
         </head>
-        <body>
-          <h1>Markdown Results</h1>
+        <body class="bg-gray-100 text-gray-900 font-sans p-6">
+          <h1 class="text-2xl font-bold mb-4">Markdown Results</h1>
           {results.map((result) => (
-            <div key={result.name}>
-              <h2>{result.name}</h2>
-              <pre>{result.data}</pre>
+            <div key={result.name} class="mb-6">
+              <h2 class="text-xl font-semibold mb-2">{result.name}</h2>
+              <pre class="bg-gray-200 p-4 rounded border border-gray-300 overflow-x-auto">{result.data}</pre>
             </div>
           ))}
-          <a href="/">Upload another file</a>
+          <a href="/" class="text-blue-500 hover:underline">Upload another file</a>
         </body>
       </html>
     );
