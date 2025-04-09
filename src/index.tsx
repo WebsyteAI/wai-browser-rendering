@@ -23,16 +23,6 @@ app.get('/', (c) => {
     <html>
       <head>
         <title>Markdown Converter</title>
-        <style>{`
-          body { font-family: Arial, sans-serif; margin: 20px; }
-          h1 { color: #333; }
-          form { margin-top: 20px; }
-          input[type="file"] { margin-bottom: 10px; }
-          button { background-color: #007BFF; color: white; border: none; padding: 10px 20px; cursor: pointer; }
-          button:hover { background-color: #0056b3; }
-          a { display: inline-block; margin-top: 20px; color: #007BFF; text-decoration: none; }
-          a:hover { text-decoration: underline; }
-        `}</style>
       </head>
       <body>
         <h1>Upload your file to convert to Markdown</h1>
@@ -75,14 +65,6 @@ app.post('/convert', async (c) => {
       <html>
         <head>
           <title>Markdown Results</title>
-          <style>{`
-            body { font-family: Arial, sans-serif; margin: 20px; }
-            h1 { color: #333; }
-            h2 { color: #555; }
-            pre { background: #f8f9fa; padding: 10px; border: 1px solid #ddd; overflow-x: auto; }
-            a { display: inline-block; margin-top: 20px; color: #007BFF; text-decoration: none; }
-            a:hover { text-decoration: underline; }
-          `}</style>
         </head>
         <body>
           <h1>Markdown Results</h1>
