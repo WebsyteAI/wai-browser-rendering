@@ -1,7 +1,6 @@
-// wrangler.jsonc
 {
   "name": "wai-browser-rendering",
-  "main": "src/index.tsx",
+  "main": "src/index.ts",
   "compatibility_date": "2025-03-07",
   "compatibility_flags": ["nodejs_compat"],
   "ai": [
