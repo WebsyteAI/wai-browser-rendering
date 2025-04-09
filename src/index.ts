@@ -16,6 +16,24 @@ export interface Env {
 
 const app = new Hono<{ Bindings: Env }>();
 
+// Home page with file upload form
+app.get('/', (c) => {
+  return c.html(`
+    <html>
+      <head>
+        <title>Markdown Converter</title>
+      </head>
+      <body>
+        <h1>Upload your file to convert to Markdown</h1>
+        <form action="/convert" method="post" encType="multipart/form-data">
+          <input type="file" name="file" required />
+          <button type="submit">Convert</button>
+        </form>
+      </body>
+    </html>
+  `);
+});
+
 // Endpoint to handle file uploads and convert to Markdown
 app.post('/convert', async (c) => {
   const contentType = c.req.header('Content-Type') || '';
@@ -41,8 +59,28 @@ app.post('/convert', async (c) => {
     // Convert files to Markdown
     const results = await c.env.AI.toMarkdown(files);
 
-    // Return the results as JSON
-    return c.json(results);
+    // Display the results
+    let resultHtml = '<h1>Markdown Results</h1>';
+    for (const result of results) {
+      resultHtml += `
+        <div>
+          <h2>${result.name}</h2>
+          <pre>${result.data}</pre>
+        </div>
+      `;
+    }
+    resultHtml += '<a href="/">Upload another file</a>';
+
+    return c.html(`
+      <html>
+        <head>
+          <title>Markdown Results</title>
+        </head>
+        <body>
+          ${resultHtml}
+        </body>
+      </html>
+    `);
   } catch (error) {
     console.error('Error processing request:', error);
     return c.text('Internal Server Error', 500);

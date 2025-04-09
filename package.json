@@ -2,10 +2,9 @@
 {
   "name": "wai-browser-rendering",
   "version": "1.0.0",
-  "main": "src/index.tsx",
+  "main": "src/index.ts",
   "dependencies": {
     "hono": "^4",
-    "hono/jsx": "^4",
     "wrangler": "^4"
   },
   "scripts": {
