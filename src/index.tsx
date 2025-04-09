@@ -1,5 +1,6 @@
 // src/index.tsx
 import { Hono } from 'hono';
+import { jsx } from 'hono/jsx';
 
 export interface Env {
   AI: {
@@ -23,11 +24,12 @@ app.get('/test', (c) => {
 
 // Home page with file upload form
 app.get('/', (c) => {
-  return c.html(`
+  return c.html(
     <html>
       <head>
         <title>Markdown Converter</title>
         <style>
+          {`
           body { font-family: Arial, sans-serif; margin: 20px; }
           h1 { color: #333; }
           form { margin-top: 20px; }
@@ -36,6 +38,7 @@ app.get('/', (c) => {
           button:hover { background-color: #0056b3; }
           a { display: inline-block; margin-top: 20px; color: #007BFF; text-decoration: none; }
           a:hover { text-decoration: underline; }
+          `}
         </style>
       </head>
       <body>
@@ -46,7 +49,7 @@ app.get('/', (c) => {
         </form>
       </body>
     </html>
-  `);
+  );
 });
 
 // Endpoint to handle file uploads and convert to Markdown
@@ -75,35 +78,33 @@ app.post('/convert', async (c) => {
     const results = await c.env.AI.toMarkdown(files);
 
     // Display the results
-    return c.html(`
+    return c.html(
       <html>
         <head>
           <title>Markdown Results</title>
           <style>
+            {`
             body { font-family: Arial, sans-serif; margin: 20px; }
             h1 { color: #333; }
             h2 { color: #555; }
             pre { background: #f8f9fa; padding: 10px; border: 1px solid #ddd; overflow-x: auto; }
             a { display: inline-block; margin-top: 20px; color: #007BFF; text-decoration: none; }
             a:hover { text-decoration: underline; }
+            `}
           </style>
         </head>
         <body>
           <h1>Markdown Results</h1>
-          ${results
-            .map(
-              (result) => `
-            <div>
-              <h2>${result.name}</h2>
-              <pre>${result.data}</pre>
+          {results.map((result) => (
+            <div key={result.name}>
+              <h2>{result.name}</h2>
+              <pre>{result.data}</pre>
             </div>
-          `
-            )
-            .join('')}
+          ))}
           <a href="/">Upload another file</a>
         </body>
       </html>
-    `);
+    );
   } catch (error) {
     console.error('Error processing request:', error);
     return c.text('Internal Server Error', 500);

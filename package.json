@@ -4,6 +4,7 @@
   "main": "src/index.tsx",
   "dependencies": {
     "hono": "^4",
+    "hono/jsx": "^4",
     "wrangler": "^4"
   },
   "scripts": {
