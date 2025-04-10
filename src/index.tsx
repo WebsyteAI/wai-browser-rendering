@@ -3,6 +3,7 @@ import { Hono } from 'hono';
 import { jsx } from 'hono/jsx';
 import { MarkdownResults } from './components/MarkdownResults';
 import { FAQs } from './components/FAQs';
+import { AdSense } from './components/AdSense';
 
 export interface Env {
   AI: {
@@ -112,6 +113,7 @@ app.get('/', (c) => {
           <button id="convert-button" type="submit" class="mt-4 bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600">Convert</button>
         </form>
         <FAQs />
+        <AdSense />
       </body>
     </html>
   );
@@ -154,6 +156,7 @@ app.post('/convert', async (c) => {
         </head>
         <body class="bg-gray-100 text-gray-900 font-sans p-6">
           <MarkdownResults results={results} />
+          <AdSense />
         </body>
       </html>
     );
