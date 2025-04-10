@@ -88,12 +88,22 @@ app.get('/', (c) => {
         <div class="mt-12 max-w-2xl">
           <h2 class="text-2xl font-bold mb-4">FAQs</h2>
           <div class="mb-4">
-            <h3 class="text-lg font-semibold">What is the value proposition of this service?</h3>
-            <p class="text-gray-600">This service allows you to quickly and easily convert various file formats into Markdown, saving you time and effort in manual conversions.</p>
+            <h3 class="text-lg font-semibold">Why is this service important?</h3>
+            <p class="text-gray-600">Markdown ↗ is essential for text generation and large language models (LLMs) in training and inference because it can provide structured, semantic, human, and machine-readable input. Likewise, Markdown facilitates chunking and structuring input data for better retrieval and synthesis in the context of RAGs, and its simplicity and ease of parsing and rendering make it ideal for AI Agents.</p>
+            <p class="text-gray-600 mt-2">For these reasons, document conversion plays an important role when designing and developing AI applications. Workers AI provides the <code>toMarkdown</code> utility method that developers can use from the <code>env.AI</code> binding or the REST APIs for quick, easy, and convenient conversion and summary of documents in multiple formats to Markdown language.</p>
           </div>
-          <div>
+          <div class="mb-4">
             <h3 class="text-lg font-semibold">What file formats are supported?</h3>
-            <p class="text-gray-600">We support a wide range of formats including PDFs, images, HTML, XML, Microsoft Office documents, Open Document formats, CSVs, and Apple Numbers files. For a full list, refer to our <a href="/SUPPORTED_FORMATS.md" class="text-blue-500 hover:underline">Supported Formats</a>.</p>
+            <ul class="list-disc list-inside text-gray-600">
+              <li><strong>PDF Documents:</strong> .pdf</li>
+              <li><strong>Images:</strong> .jpeg, .jpg, .png, .webp, .svg</li>
+              <li><strong>HTML Documents:</strong> .html</li>
+              <li><strong>XML Documents:</strong> .xml</li>
+              <li><strong>Microsoft Office Documents:</strong> .xlsx, .xlsm, .xlsb, .xls, .et</li>
+              <li><strong>Open Document Format:</strong> .ods</li>
+              <li><strong>CSV:</strong> .csv</li>
+              <li><strong>Apple Documents:</strong> .numbers</li>
+            </ul>
           </div>
         </div>
       </body>
