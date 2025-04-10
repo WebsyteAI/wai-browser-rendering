@@ -81,31 +81,33 @@ app.get('/', (c) => {
             </ul>
           </div>
         </div>
-        <script>
-          document.addEventListener('DOMContentLoaded', function() {
-            var dropzone = document.getElementById('dropzone');
-            var fileInput = document.getElementById('file-upload');
+        <script dangerouslySetInnerHTML={{
+          __html: `
+            document.addEventListener('DOMContentLoaded', function() {
+              var dropzone = document.getElementById('dropzone');
+              var fileInput = document.getElementById('file-upload');
 
-            dropzone.addEventListener('dragover', function(e) {
-              e.preventDefault();
-              dropzone.classList.add('bg-blue-100');
+              dropzone.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                dropzone.classList.add('bg-blue-100');
+              });
+
+              dropzone.addEventListener('dragleave', function() {
+                dropzone.classList.remove('bg-blue-100');
+              });
+
+              dropzone.addEventListener('drop', function(e) {
+                e.preventDefault();
+                dropzone.classList.remove('bg-blue-100');
+
+                var files = e.dataTransfer.files;
+                if (files.length > 0) {
+                  fileInput.files = files;
+                }
+              });
             });
-
-            dropzone.addEventListener('dragleave', function() {
-              dropzone.classList.remove('bg-blue-100');
-            });
-
-            dropzone.addEventListener('drop', function(e) {
-              e.preventDefault();
-              dropzone.classList.remove('bg-blue-100');
-
-              var files = e.dataTransfer.files;
-              if (files.length > 0) {
-                fileInput.files = files;
-              }
-            });
-          });
-        </script>
+          `,
+        }} />
       </body>
     </html>
   );
