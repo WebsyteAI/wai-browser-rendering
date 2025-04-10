@@ -45,9 +45,18 @@ app.get('/test', (c) => {
 // Home page with file upload form
 app.get('/', (c) => {
   return c.html(
-    <html>
+    <html lang="en">
       <head>
-        <title>Markdown Converter</title>
+        <title>Markdown Converter - Convert Files to Markdown Effortlessly</title>
+        <meta name="description" content="Easily convert your files into Markdown format. Supports PDFs, images, HTML, XML, Microsoft Office documents, and more." />
+        <meta name="keywords" content="Markdown converter, file to markdown, PDF to markdown, HTML to markdown, AI markdown conversion" />
+        <meta name="author" content="WebsyteAI" />
+        <meta property="og:title" content="Markdown Converter - Convert Files to Markdown Effortlessly" />
+        <meta property="og:description" content="Easily convert your files into Markdown format. Supports PDFs, images, HTML, XML, Microsoft Office documents, and more." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://wai-browser-rendering.websyte.ai/" />
+        <meta property="og:image" content="https://wai-browser-rendering.websyte.ai/og-image.png" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
         <script dangerouslySetInnerHTML={{
           __html: `
@@ -149,9 +158,18 @@ app.post('/convert', async (c) => {
 
     // Display the results
     return c.html(
-      <html>
+      <html lang="en">
         <head>
-          <title>Markdown Results</title>
+          <title>Markdown Results - Converted Files</title>
+          <meta name="description" content="View the Markdown results of your converted files. Easily copy and use the Markdown content." />
+          <meta name="keywords" content="Markdown results, converted files, copy markdown, AI markdown conversion" />
+          <meta name="author" content="WebsyteAI" />
+          <meta property="og:title" content="Markdown Results - Converted Files" />
+          <meta property="og:description" content="View the Markdown results of your converted files. Easily copy and use the Markdown content." />
+          <meta property="og:type" content="website" />
+          <meta property="og:url" content="https://wai-browser-rendering.websyte.ai/results" />
+          <meta property="og:image" content="https://wai-browser-rendering.websyte.ai/og-image.png" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
           <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
         </head>
         <body class="bg-gray-100 text-gray-900 font-sans p-6">

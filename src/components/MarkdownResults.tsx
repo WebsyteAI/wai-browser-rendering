@@ -13,7 +13,7 @@ export function MarkdownResults({ results }: { results: MarkdownResult[] }) {
       {results.map((result, index) => (
         <div key={result.name} class="mb-6">
           <h2 class="text-xl font-semibold mb-2">{result.name}</h2>
-          <div id={`content-${index}`} class="bg-gray-200 p-4 rounded border border-gray-300 overflow-x-auto"></div>
+          <pre class="bg-gray-200 p-4 rounded border border-gray-300 overflow-x-auto">{result.data}</pre>
           <button
             id={`copy-button-${index}`}
             class="mt-2 bg-blue-500 text-white py-1 px-3 rounded hover:bg-blue-600 flex items-center"
@@ -24,12 +24,8 @@ export function MarkdownResults({ results }: { results: MarkdownResult[] }) {
             </svg>
             Copy Markdown
           </button>
-          <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
           <script dangerouslySetInnerHTML={{
             __html: `
-              document.getElementById('content-${index}').innerHTML =
-                marked.parse(${JSON.stringify(result.data)});
-
               document.getElementById('copy-button-${index}').addEventListener('click', function() {
                 navigator.clipboard.writeText(${JSON.stringify(result.data)}).then(() => {
                   alert('Markdown copied to clipboard!');
