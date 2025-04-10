@@ -46,31 +46,6 @@ app.get('/', (c) => {
       <head>
         <title>Markdown Converter</title>
         <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-        <script>
-          document.addEventListener('DOMContentLoaded', () => {
-            const dropzone = document.getElementById('dropzone');
-            const fileInput = document.getElementById('file-upload');
-
-            dropzone.addEventListener('dragover', (e) => {
-              e.preventDefault();
-              dropzone.classList.add('bg-blue-100');
-            });
-
-            dropzone.addEventListener('dragleave', () => {
-              dropzone.classList.remove('bg-blue-100');
-            });
-
-            dropzone.addEventListener('drop', (e) => {
-              e.preventDefault();
-              dropzone.classList.remove('bg-blue-100');
-
-              const files = e.dataTransfer.files;
-              if (files.length > 0) {
-                fileInput.files = files;
-              }
-            });
-          });
-        </script>
       </head>
       <body class="bg-gray-100 text-gray-900 font-sans p-6 flex flex-col items-center justify-center min-h-screen">
         <div class="text-center mb-8">
@@ -106,6 +81,31 @@ app.get('/', (c) => {
             </ul>
           </div>
         </div>
+        <script>
+          document.addEventListener('DOMContentLoaded', function() {
+            var dropzone = document.getElementById('dropzone');
+            var fileInput = document.getElementById('file-upload');
+
+            dropzone.addEventListener('dragover', function(e) {
+              e.preventDefault();
+              dropzone.classList.add('bg-blue-100');
+            });
+
+            dropzone.addEventListener('dragleave', function() {
+              dropzone.classList.remove('bg-blue-100');
+            });
+
+            dropzone.addEventListener('drop', function(e) {
+              e.preventDefault();
+              dropzone.classList.remove('bg-blue-100');
+
+              var files = e.dataTransfer.files;
+              if (files.length > 0) {
+                fileInput.files = files;
+              }
+            });
+          });
+        </script>
       </body>
     </html>
   );
