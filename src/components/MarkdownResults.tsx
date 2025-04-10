@@ -16,7 +16,11 @@ export function MarkdownResults({ results }: { results: MarkdownResult[] }) {
           <pre class="bg-gray-200 p-4 rounded border border-gray-300 overflow-x-auto">{result.data}</pre>
           <button
             class="mt-2 bg-blue-500 text-white py-1 px-3 rounded hover:bg-blue-600 flex items-center"
-            onClick={() => window.copyMarkdown(result.data)}
+            onClick={() => {
+              navigator.clipboard.writeText(result.data)
+                .then(() => alert('Markdown copied to clipboard!'))
+                .catch((err) => console.error('Failed to copy text: ', err));
+            }}
           >
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
               <path d="M8 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V6a2 2 0 00-2-2H8z" />
