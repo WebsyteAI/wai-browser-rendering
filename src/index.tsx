@@ -46,6 +46,46 @@ app.get('/', (c) => {
       <head>
         <title>Markdown Converter</title>
         <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+        <script dangerouslySetInnerHTML={{
+          __html: `
+            document.addEventListener('DOMContentLoaded', function() {
+              var dropzone = document.getElementById('dropzone');
+              var fileInput = document.getElementById('file-upload');
+              var fileNameDisplay = document.getElementById('file-name');
+              var convertButton = document.getElementById('convert-button');
+
+              convertButton.disabled = true;
+
+              dropzone.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                dropzone.classList.add('bg-blue-100');
+              });
+
+              dropzone.addEventListener('dragleave', function() {
+                dropzone.classList.remove('bg-blue-100');
+              });
+
+              dropzone.addEventListener('drop', function(e) {
+                e.preventDefault();
+                dropzone.classList.remove('bg-blue-100');
+
+                var files = e.dataTransfer.files;
+                if (files.length > 0) {
+                  fileInput.files = files;
+                  fileNameDisplay.textContent = files[0].name;
+                  convertButton.disabled = false;
+                }
+              });
+
+              fileInput.addEventListener('change', function() {
+                if (fileInput.files.length > 0) {
+                  fileNameDisplay.textContent = fileInput.files[0].name;
+                  convertButton.disabled = false;
+                }
+              });
+            });
+          `,
+        }} />
       </head>
       <body class="bg-gray-100 text-gray-900 font-sans p-6 flex flex-col items-center justify-center min-h-screen">
         <div class="text-center mb-8">
@@ -57,8 +97,9 @@ app.get('/', (c) => {
             <p class="text-gray-500 mb-4">Drag and drop your file here or click to upload</p>
             <input type="file" name="file" required class="hidden" id="file-upload" />
             <label for="file-upload" class="cursor-pointer inline-block bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">Choose File</label>
+            <p id="file-name" class="mt-4 text-gray-700"></p>
           </div>
-          <button type="submit" class="mt-4 bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600">Convert</button>
+          <button id="convert-button" type="submit" class="mt-4 bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600">Convert</button>
         </form>
         <div class="mt-12 max-w-2xl">
           <h2 class="text-2xl font-bold mb-4">FAQs</h2>
@@ -81,33 +122,6 @@ app.get('/', (c) => {
             </ul>
           </div>
         </div>
-        <script dangerouslySetInnerHTML={{
-          __html: `
-            document.addEventListener('DOMContentLoaded', function() {
-              var dropzone = document.getElementById('dropzone');
-              var fileInput = document.getElementById('file-upload');
-
-              dropzone.addEventListener('dragover', function(e) {
-                e.preventDefault();
-                dropzone.classList.add('bg-blue-100');
-              });
-
-              dropzone.addEventListener('dragleave', function() {
-                dropzone.classList.remove('bg-blue-100');
-              });
-
-              dropzone.addEventListener('drop', function(e) {
-                e.preventDefault();
-                dropzone.classList.remove('bg-blue-100');
-
-                var files = e.dataTransfer.files;
-                if (files.length > 0) {
-                  fileInput.files = files;
-                }
-              });
-            });
-          `,
-        }} />
       </body>
     </html>
   );
