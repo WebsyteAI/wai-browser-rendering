@@ -46,16 +46,43 @@ app.get('/', (c) => {
       <head>
         <title>Markdown Converter</title>
         <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+        <script>
+          document.addEventListener('DOMContentLoaded', () => {
+            const dropzone = document.getElementById('dropzone');
+            const fileInput = document.getElementById('file-upload');
+
+            dropzone.addEventListener('dragover', (e) => {
+              e.preventDefault();
+              dropzone.classList.add('bg-blue-100');
+            });
+
+            dropzone.addEventListener('dragleave', () => {
+              dropzone.classList.remove('bg-blue-100');
+            });
+
+            dropzone.addEventListener('drop', (e) => {
+              e.preventDefault();
+              dropzone.classList.remove('bg-blue-100');
+
+              const files = e.dataTransfer.files;
+              if (files.length > 0) {
+                fileInput.files = files;
+              }
+            });
+          });
+        </script>
       </head>
       <body class="bg-gray-100 text-gray-900 font-sans p-6 flex flex-col items-center justify-center min-h-screen">
         <div class="text-center mb-8">
           <h1 class="text-4xl font-extrabold mb-2">Markdown Converter</h1>
           <p class="text-lg text-gray-600">Easily convert your files into Markdown format</p>
         </div>
-        <form action="/convert" method="post" encType="multipart/form-data" class="w-full max-w-lg border-2 border-dashed border-gray-300 rounded-lg p-6 bg-white text-center">
-          <p class="text-gray-500 mb-4">Drag and drop your file here or click to upload</p>
-          <input type="file" name="file" required class="hidden" id="file-upload" />
-          <label for="file-upload" class="cursor-pointer inline-block bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">Choose File</label>
+        <form action="/convert" method="post" encType="multipart/form-data" class="w-full max-w-lg">
+          <div id="dropzone" class="border-2 border-dashed border-gray-300 rounded-lg p-6 bg-white text-center cursor-pointer">
+            <p class="text-gray-500 mb-4">Drag and drop your file here or click to upload</p>
+            <input type="file" name="file" required class="hidden" id="file-upload" />
+            <label for="file-upload" class="cursor-pointer inline-block bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">Choose File</label>
+          </div>
           <button type="submit" class="mt-4 bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600">Convert</button>
         </form>
         <div class="mt-12 max-w-2xl">
