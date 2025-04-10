@@ -64,8 +64,8 @@ app.get('/', (c) => {
           <h2 class="text-2xl font-bold mb-4">FAQs</h2>
           <div class="mb-4">
             <h3 class="text-lg font-semibold">Why is this service important?</h3>
-            <p class="text-gray-600">Markdown ↗ is essential for text generation and large language models (LLMs) in training and inference because it can provide structured, semantic, human, and machine-readable input. Likewise, Markdown facilitates chunking and structuring input data for better retrieval and synthesis in the context of RAGs, and its simplicity and ease of parsing and rendering make it ideal for AI Agents.</p>
-            <p class="text-gray-600 mt-2">For these reasons, document conversion plays an important role when designing and developing AI applications. Workers AI provides the <code>toMarkdown</code> utility method that developers can use from the <code>env.AI</code> binding or the REST APIs for quick, easy, and convenient conversion and summary of documents in multiple formats to Markdown language.</p>
+            <p class="text-gray-600">Markdown is a critical format for text generation and large language models (LLMs) during both training and inference. It provides a structured, semantic, and human-readable format that is also machine-friendly. This makes it ideal for chunking and organizing input data, improving retrieval and synthesis in Retrieval-Augmented Generation (RAG) workflows. Additionally, Markdown's simplicity and ease of parsing make it a preferred choice for AI Agents.</p>
+            <p class="text-gray-600 mt-2">Document conversion is therefore a key component in building AI applications. Workers AI offers the <code>toMarkdown</code> utility method, accessible via the <code>env.AI</code> binding or REST APIs, enabling developers to quickly and efficiently convert and summarize documents in various formats into Markdown.</p>
           </div>
           <div class="mb-4">
             <h3 class="text-lg font-semibold">What file formats are supported?</h3>
