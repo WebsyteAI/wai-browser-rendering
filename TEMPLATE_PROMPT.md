@@ -28,6 +28,7 @@ I want to build a Cloudflare Workers application with the following features:
 
 3. **Markdown Results Page**:
    - Display the converted Markdown results.
+   - Use `marked.js` to render the Markdown content dynamically in the browser.
    - Include a "Copy Markdown" button for each result, allowing users to copy the content to their clipboard.
 
 4. **FAQs Section**:
@@ -36,23 +37,28 @@ I want to build a Cloudflare Workers application with the following features:
 5. **AdSense Integration**:
    - Include an AdSense script at the bottom of each page, wrapped in a container with consistent width (`w-full max-w-2xl mx-auto`).
 
-6. **Code Structure**:
+6. **SEO Optimization**:
+   - Add meta tags for description, keywords, and author.
+   - Include Open Graph (OG) tags for better social media sharing.
+   - Use semantic HTML structure.
+
+7. **Code Structure**:
    - Split the code into smaller, reusable components:
      - `MarkdownResults` for displaying the conversion results.
      - `FAQs` for the frequently asked questions section.
      - `AdSense` for the AdSense integration.
 
-7. **Styling**:
+8. **Styling**:
    - Use Tailwind CSS for styling.
    - Ensure the UI is responsive and visually appealing.
 
-8. **Build and Deployment**:
+9. **Build and Deployment**:
    - Automatically check the build status after each publish.
    - Use GitHub Actions for deployment.
 
-9. **Additional Features**:
-   - Include a test endpoint (`/test`) that returns a JSON response to verify the service is working.
-   - Provide a `TEMPLATE_PROMPT.md` file that describes how to recreate this project as a prompt.
+10. **Additional Features**:
+    - Include a test endpoint (`/test`) that returns a JSON response to verify the service is working.
+    - Provide a `TEMPLATE_PROMPT.md` file that describes how to recreate this project as a prompt.
 
 ---
 
